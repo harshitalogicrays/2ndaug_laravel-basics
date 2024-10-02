@@ -1,0 +1,40 @@
+
+routes -> web.php (routing)
+
+resources--> views ---> html part - index.blade.php 
+
+public -> static data - images, css, javascript file 
+
+
+database --->migration-> mysql table creation
+
+app - 
+Http-> controllers -> .php ->php class
+Models-> model -> .php 
+
+
+lang - localiztion
+
+
+
+
+web.php -----> controllers--------> views 
+                          --------> models
+=======================================
+Route::get('/', function () { return view('welcome');});
+				  
+				  
+http methods - 
+1. get  - fetch
+2. post - submit
+3. put - update
+4. patch - update
+5. delete - delete
+
+/ -  root url (localhost:8000)
+
+function(){return view('welcome');}) - closure
+
+
+
+================================

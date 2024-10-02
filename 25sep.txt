@@ -1,0 +1,32 @@
+run - php artisan server 
+migrate - php artisan migrate 
+
+controller - php artisan make:controller controllername
+
+php artisan make:controller firstcontroller 
+app -> http -> controllers -> firstcontroller.php
+
+3 types of controller -
+1. basic controller
+2. singleton 
+3. resource
+
+blade template  -
+{{}} - string interpolation 
+{!! $email !!} - if any html entity is there
+{{--  --}} - comment 
+
+
+blade directives - 
+1. @if 
+   @endif 
+
+@else 
+@elseif 
+
+
+unless 
+isset 
+empty 
+while 
+continue

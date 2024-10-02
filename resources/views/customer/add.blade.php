@@ -11,17 +11,23 @@
             
             </h1></div>
         <div class="card-body">
-           <form>
+           <form method="post" action="{{url('/customer/add')}}">
+            @csrf
             <div class="row">
                 <div class="mb-3 col">
                     <label for="" class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" />
-                    <small  class="text-danger"></small>
+                    <input type="text" name="name" class="form-control"  value="{{old('name')}}"/>
+                    @error('name')
+                    <small  class="text-danger">{{$message}}</small>
+                    @enderror
+                   
                 </div>
                 <div class="mb-3 col">
                     <label for="" class="form-label">Email</label>
-                    <input type="text" name="email" class="form-control" />
-                    <small  class="text-danger"></small>
+                    <input type="text" name="email" class="form-control"  value="{{old('email')}}"/>
+                    @error('email')
+                    <small  class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
             </div>
             <div class="row">
@@ -40,12 +46,21 @@
                 <div class="mb-3 col">
                     <label for="" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" />
-                    <small  class="text-danger"></small>
+                    @error('password')
+                    <small  class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
+                {{-- <div class="mb-3 col">
+                    <label for="" class="form-label">Confirm Password</label>
+                    <input type="password" name="password_confirmation" class="form-control" />
+                    <small  class="text-danger"></small>
+                </div> --}}
                 <div class="mb-3 col">
                     <label for="" class="form-label">Confirm Password</label>
                     <input type="password" name="cpassword" class="form-control" />
-                    <small  class="text-danger"></small>
+                    @error('cpassword')
+                <small  class="text-danger">{{$message}}</small>
+                @enderror
                 </div>
             </div>
             <div class="mb-3">
@@ -66,7 +81,7 @@
                     <label class="form-check-label" for="">Other</label>
                 </div>
                 <br/>
-                <small  class="text-danger"></small>
+               
             </div>
             <button type="submit" class="btn btn-primary"> Submit</button>
             

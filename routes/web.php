@@ -46,3 +46,4 @@ Route::get('/products',[mainlayoutdemo::class,'products']);
 
 Route::get('/customer',[customerController::class,'index']);
 Route::get('/customer/add',[customerController::class,'create']);
+Route::post('/customer/add',[customerController::class,'add']);

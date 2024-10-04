@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Rules\uppercase;
 use Illuminate\Http\Request;
 
 class customerController extends Controller
@@ -39,16 +41,33 @@ class customerController extends Controller
         // }
         //  dd($request->all());
         $request->validate([
-            'name'=>'required',
+            'name'=>['required',new uppercase],
             'email'=>['required',function($attribute,$value,$fail){
-                if(!preg_match("/[\w\.]+\@[\w]+\.[a-zA-Z]{2,3}/",$value)){
+                if(!preg_match("/^([\w\.]+)\@([\w]+)\.([a-zA-Z]{3})$/",$value)){
                     $fail("Invalid :attribute");
-                }
-            }],
+                } }],
             'password'=>['required','min:5','max:15'],
-            'cpassword'=>['required','same:password']
-        ]);
+            'cpassword'=>['required','same:password'],
+            'mobile'=>'required',
+            'gender'=>'required'  ]);
+        
+        //insert into customers table
+        $customer = new Customer();
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->dob = $request->dob;
+        $customer->mobile = $request->mobile;
+        $customer->password = $request->password;
+        $customer->gender = $request->gender;
+        $customer->address = $request->address;
+        if($customer->save()){
+            return redirect('/customer')->with('message','customer added');
+        }
+        
     }
+
+
+
 }
 
 

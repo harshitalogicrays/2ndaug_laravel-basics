@@ -1,0 +1,48 @@
+validations -
+1. function closure
+2. rule  - php artisan make:rule rulename
+
+=========================================
+database -> migration --> files 
+
+php artisan migrate 
+
+table creation -> migration 
+add column 
+delete column
+
+php artisan make:migration create_customers_table
+
+php artisan migrate
+=====================================================
+
+MVC -> view -> html , controller-> business logics 
+model - database 
+
+php artisan make:model Customer
+
+
+==============================================
+monday - 
+
+fetch data and display 
+pagination 
+
+helper class 
+
+delete 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

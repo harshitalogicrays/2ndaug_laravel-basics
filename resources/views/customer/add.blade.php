@@ -38,8 +38,10 @@
                 </div>
                 <div class="mb-3 col">
                     <label for="" class="form-label">Mobile</label>
-                    <input type="text" name="mobile " class="form-control" />
-                    <small  class="text-danger"></small>
+                    <input type="number" name="mobile" class="form-control" />
+                    @error('mobile')
+                    <small  class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
             </div>  
             <div class="row">
@@ -67,22 +69,27 @@
                 <label for="" class="form-label me-2">Gender:</label>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input"
-                        type="radio" name="gender" value="male" />
+                        type="radio" name="gender" value="M" />
                     <label class="form-check-label" for="">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input"
-                        type="radio" name="gender" value="female" />
+                        type="radio" name="gender" value="F" />
                     <label class="form-check-label" for="">Female</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input"
-                        type="radio" name="gender" value="other" />
+                        type="radio" name="gender" value="O" />
                     <label class="form-check-label" for="">Other</label>
                 </div>
                 <br/>
                
             </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Address</label>
+                <textarea class="form-control" name="address"  rows="3"></textarea>
+            </div>
+            
             <button type="submit" class="btn btn-primary"> Submit</button>
             
            </form>

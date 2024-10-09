@@ -1,0 +1,12 @@
+fetch data and display 
+pagination 
+
+helper functions - 
+delete 
+
+========================================================================
+file upload  - 
+softDelete - 
+seeder and faker 
+search 
+

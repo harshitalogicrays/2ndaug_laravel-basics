@@ -27,23 +27,46 @@
                         <th scope="col">Email</th>
                         <th>DOB</th><th>Mobile</th>
                         <th>Gender</th>
+                        <th>status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="">
-                        <td>R1C1</td>
-                        <td>R1C2</td>
-                        <td>R1C3</td>
-                        <td>Item</td>
-                        <td>Item</td>
-                        <td>Item</td>
-                        <td>Item</td>
-                    </tr>
+                    @forelse ($customers as $c)
+                    <tr> <td>{{$c->id}}</td>
+                        <td>{{$c->name}}</td>
+                        <td>{{$c->email}}</td>
+                        <td>{{$c->dob ? formattedDate('D d-M-Y',$c->dob) : 'NA'}}</td>
+                        <td>{{$c->mobile}}</td>
+                        <td>  @if ($c->gender=='M')
+                        <span class="badge rounded-pill text-bg-primary">Male</span >
+                            @elseif($c->gender=='F')
+                            <span class="badge rounded-pill text-bg-warning">Female</span >
+                            @else   
+                            <span class="badge rounded-pill text-bg-info">Other</span >
+                            @endif
+                        </td>
+                        <td> @if ($c->status=='1')
+                            <span class="badge rounded-pill text-bg-success">Active</span >
+                            @else
+                            <span class="badge rounded-pill text-bg-danger">Inactive</span > 
+                            @endif
+                        </td>
+                        <td>
+                            <a type="button" 
+                            href="{{url('/customer/edit/'.$c->id)}}" class="btn btn-success me-2"> <i class="bi bi-pencil-square"></i> </a>
+
+                            <a type="button"  class="btn btn-danger" href="{{url('/customer/delete/'.$c->id)}}"
+                            onclick="return window.confirm('are you sure to delete this??')"> <i class="bi bi-trash"></i> </a>
+                        </td></tr>
+                    @empty
+                      <tr><td colspan="8" align="center">No customer found</td></tr>  
+                    @endforelse
+                   
                 </tbody>
             </table>
            </div>
-           
+           {{$customers->links('pagination::bootstrap-5')}}
         </div>
         
     </div>

@@ -8,9 +8,17 @@ use Illuminate\Http\Request;
 
 class customerController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         // $customers = Customer::all();
-        $customers = Customer::paginate(4);
+        // $customers = Customer::paginate(4);
+        // return view('customer.index')->with('customers',$customers);
+        $search =$request->search;
+        if($search !=''){
+            $customers = Customer::where('name','like',"%$search%")->orWhere('email','like',"%$search%")->paginate(4);
+        }
+        else {
+            $customers = Customer::paginate(4);
+        }
         return view('customer.index')->with('customers',$customers);
     }
     public function create(){
@@ -105,6 +113,22 @@ class customerController extends Controller
             return redirect('/customer')->with('message','customer updated');
         }
         }  
+    }
+
+    public function trash(){
+        $customers = Customer::onlyTrashed()->paginate(4);
+        return view('customer.trash')->with('customers',$customers);
+    }
+    public function forcedelete($id){
+        $customer = Customer::withTrashed()->find($id);
+        if($customer) {$customer->forcedelete();}
+        return redirect()->back();
+    }
+
+    public function restore($id){
+        $customer = Customer::withTrashed()->find($id);
+        if($customer) {$customer->restore();}
+        return redirect('/customer');
     }
 }
 

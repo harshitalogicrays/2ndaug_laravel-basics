@@ -1,0 +1,109 @@
+
+softDelete - 
+php artisan make:migration add_deleted_at_to_customers_table
+
+up ->  $table->softDeletes();
+down ->  $table->dropsoftDeletes();
+php artisan migrate
+
+Customer Model -
+use Illuminate\Database\Eloquent\SoftDeletes;
+ use SoftDeletes;
+
+Trash  - onlyTrashed , withTrashed
+force delete - forceDelete()
+restore - restore()
+
+  public function trash(){
+        $customers = Customer::onlyTrashed()->paginate(4);
+        return view('customer.trash')->with('customers',$customers);
+    }
+
+   web.php -  Route::get('/trash','trash');
+        Route::get('/restore/{id}','restore');
+        Route::get('/fdelete/{id}','forcedelete');
+=============================================
+
+    public function forcedelete($id){
+        $customer = Customer::withTrashed()->find($id);
+        if($customer) {$customer->forcedelete();}
+        return redirect()->back();
+    }
+
+    public function restore($id){
+        $customer = Customer::withTrashed()->find($id);
+        if($customer) {$customer->restore();}
+        return redirect('/customer');
+    }
+
+===========================================================
+seeder  - 
+php artisan make:seeder customerseeder
+
+In DatabaseSeeder -
+  $this->call([
+            CustomerSeeder::class
+        ]);
+
+
+>php artisan db:seed
+
+
+seeder and faker 
+
+name(): Generates a random name.
+firstName(): Generates a random first name.
+lastName(): Generates a random last name.
+email(): Generates a random email address.
+password(): Generates a random password.
+phoneNumber(): Generates a random phone number.
+address(): Generates a random address.
+city(): Generates a random city name.
+state(): Generates a random state name.
+postcode(): Generates a random postal code.
+country(): Generates a random country name.
+sentence(): Generates a random sentence.
+paragraph(): Generates a random paragraph.
+text(): Generates a random text.
+randomElement($array): Returns a random element from the given array.
+dateTime($max = 'now', $timezone = null): Generates a random date and time.
+numberBetween($min = 0, $max = 2147483647): Generates a random number between the given range.
+boolean(): Generates a random boolean value.
+
+$faker = Faker\Factory::create();
+
+==================================
+search -
+navbar -
+ <form class="d-flex" role="search" action="{{url('/customer/search')}}">
+            <div class="input-group">
+          <input class="form-control" type="search" name="search"   value="{{Request::get('search')}}" placeholder="Search" aria-label="Search">
+          <button class="btn btn-danger" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
+
+ Route::get('/search','index');
+
+public function index(Request $request){
+        $search =$request->search;
+        if($search !=''){
+            $customers = Customer::where('name','like',"%$search%")->orWhere('email','like',"%$search%")->paginate(4);
+             return view('customer.index')->with('customers',$customers);
+        }
+        else {
+            $customers = Customer::paginate(4);
+             return view('customer.index')->with('customers',$customers);
+        }
+       
+    }
+
+    ================================================================
+    php artisan make:controller FileUploadController
+
+    ==========================
+    Monday - file upload 
+
+    middleware  - 
+    component types - 
+    component 
+    joining -

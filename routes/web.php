@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mainlayoutdemo;
 use App\Http\Controllers\firstcontroller;
 use App\Http\Controllers\customerController;
+use App\Http\Controllers\FileUploadController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -71,5 +72,13 @@ Route::controller(customerController::class)->group(function(){
         Route::get('/delete/{id}','delete');
         Route::get('/edit/{id}','edit');
         Route::put('/update/{id}','update');
+        Route::get('/trash','trash');
+        Route::get('/restore/{id}','restore');
+        Route::get('/fdelete/{id}','forcedelete');
+        Route::get('/search','index');
     });
 });
+
+
+Route::get('/fileupload',[FileUploadController::class,'index']);
+Route::post('/fileupload',[FileUploadController::class,'uploadfile']);

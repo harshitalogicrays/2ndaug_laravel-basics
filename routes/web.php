@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mainlayoutdemo;
 use App\Http\Controllers\firstcontroller;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\singleactioncontroller;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -42,7 +44,7 @@ use App\Http\Controllers\FileUploadController;
 
 
 Route::get('/',[mainlayoutdemo::class,'index']);
-Route::get('/about',[mainlayoutdemo::class,'aboutus']);
+Route::get('/about',[mainlayoutdemo::class,'aboutus'])->middleware('routem');
 Route::get('/products',[mainlayoutdemo::class,'products']);
 
 
@@ -80,5 +82,9 @@ Route::controller(customerController::class)->group(function(){
 });
 
 
-Route::get('/fileupload',[FileUploadController::class,'index']);
-Route::post('/fileupload',[FileUploadController::class,'uploadfile']);
+Route::get('/fileupload',[FileUploadController::class,'index'])->name('file.upload');
+Route::post('/fileupload',[FileUploadController::class,'uploadfile'])->name('uploaded');
+
+Route::get('/single',singleactioncontroller::class);
+
+Route::resource('photos', PhotoController::class);

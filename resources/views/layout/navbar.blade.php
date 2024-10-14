@@ -27,7 +27,10 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url('/fileupload')}}">File Upload</a>
+            <a class="nav-link" href="{{route('file.upload')}}">File Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('photos.index')}}">resource controller</a>
           </li>
         </ul>
         <form class="d-flex" role="search" action="{{url('/customer/search')}}">

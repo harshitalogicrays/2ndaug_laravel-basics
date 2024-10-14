@@ -101,9 +101,4 @@ public function index(Request $request){
     php artisan make:controller FileUploadController
 
     ==========================
-    Monday - file upload 
-
-    middleware  - 
-    component types - 
-    component 
-    joining -
+    Monday - 

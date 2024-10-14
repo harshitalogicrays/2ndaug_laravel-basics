@@ -4,11 +4,11 @@
     <h1 >
       File Upload Demo 
     </h1>
-    <form enctype="multipart/form-data" method="post" action="{{url('/fileupload')}}">
+    <form method="post" action="{{route('uploaded')}}"  enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="" class="form-label">Choose file</label>
-            <input type="file" class="form-control"  name="image"  />
+            <input type="file" class="form-control"  name="image1"  />
         </div>
         <button  type="submit"  class="btn btn-primary">Submit</button>
         

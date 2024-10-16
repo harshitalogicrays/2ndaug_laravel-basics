@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id(); //integer primary key and Auto increment
-            $table->string('name');
+            $table->string('name',50);
             $table->string('email',200)->unique();
             $table->bigInteger('mobile'); //9999999999
             $table->date('dob')->nullable();

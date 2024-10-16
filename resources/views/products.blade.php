@@ -1,18 +1,13 @@
 @extends('layout.main')
 @section('mainsection')
-<div class="container mt-5">
+
+{{-- <x-card-anonymous></x-card-anonymous> --}}
+{{-- <div class="container mt-5">
     <h1 >
        Products <hr/>
     </h1>
-    {{-- @php
-        print_r($products);
-    @endphp --}}
     <div class="row">
         @forelse ($products as $product )
-        {{-- @php
-            // print_r($product);
-            echo $product['name'];
-        @endphp --}}
             <div class="col-3 mb-2">
                 <div class="card">
                     <img class="card-img-top" src="{{asset($product['image'])}}" height='150px' alt="name" />
@@ -25,6 +20,25 @@
                     </div>
                 </div>
             </div>
+        @empty
+            <h1>No product found</h1>
+        @endforelse
+
+        
+        
+    </div>
+  
+    
+</div> --}}
+
+
+<div class="container mt-5">
+    <h1 >
+       Products <hr/>
+    </h1>
+    <div class="row">
+        @forelse ($products as $product )
+            <x-card-anonymous :product="$product"></x-card-anonymous>
         @empty
             <h1>No product found</h1>
         @endforelse

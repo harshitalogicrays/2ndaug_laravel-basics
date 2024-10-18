@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\joincontroller;
 use App\Http\Controllers\mainlayoutdemo;
 use App\Http\Controllers\firstcontroller;
 use App\Http\Controllers\PhotoController;
@@ -88,3 +89,6 @@ Route::post('/fileupload',[FileUploadController::class,'uploadfile'])->name('upl
 Route::get('/single',singleactioncontroller::class);
 
 Route::resource('photos', PhotoController::class);
+
+
+Route::get('/join',[joincontroller::class,'index']);

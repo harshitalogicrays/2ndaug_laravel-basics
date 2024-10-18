@@ -4,19 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Alert extends Component
-{ public $message,$type,$id,$dismissible;
+class InlineComp extends Component
+{   public $title;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($message,$type="warning",$id=1,$dismissible=false)
-    {   
-        $this->message = $message;
-        $this->type=$type;
-        $this->id=$id;
-        $this->dismissible=$dismissible;
+    public function __construct($title)
+    {
+        $this->title=$title;
     }
 
     /**
@@ -26,6 +23,10 @@ class Alert extends Component
      */
     public function render()
     {
-        return view('components.alert');
+        return <<<'blade'
+                <div>Inline Component <p>{{$title}}
+                <p/>
+                </div>    
+blade;
     }
 }

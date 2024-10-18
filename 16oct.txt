@@ -56,3 +56,9 @@ id(PK)     name                          id(PK)    name   mobile     courseid(FK
 4       python                            104       ddd     3131313    1
                                           105       eee     3131313    3 
 
+==========================================================
+slot 
+joining 
+localization 
+
+Auth 

@@ -1,0 +1,27 @@
+slot - 
+
+php artisan make:component InlineComp --inline = only class file
+
+==============================================================
+table -> unique => 1 column -> unique and not null (primary key)
+
+course                                      student
+id(PK)     name                          id(PK)    name   mobile     courseid(FK)
+1       reactjs                           101       aaa    99999       2
+2        php                              102       bbb     3131313    1
+3       java                              103       ccc     3131313    3
+4       python                            104       ddd     3131313    1
+                                          105       eee     3131313    3 
+
+==========================================================
+
+student + coursename
+
+select students.id,students.name,students.mobile,course.name as coursename from students 
+INNER JOIN course 
+ON students.course_id=course.id;
+
+==============================================
+when 
+localization
+auth -> ready package 

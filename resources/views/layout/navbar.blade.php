@@ -32,6 +32,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('photos.index')}}">resource controller</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('/join')}}">Joining </a>
+          </li>
         </ul>
         <form class="d-flex" role="search" action="{{url('/customer/search')}}">
             <div class="input-group">
